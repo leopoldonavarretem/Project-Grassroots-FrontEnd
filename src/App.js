@@ -1,29 +1,23 @@
-import { useEffect, useState } from "react";
+//ROUTES
 import { Routes, Route } from "react-router-dom";
+import routes from "./config/routes";
+
+//COMPONENTS
 import LoadingComponent from "./components/Loading";
 import Navbar from "./components/Navbar/Navbar";
+
+//LOG IN 
 import { getLoggedIn, logout } from "./services/auth";
-import routes from "./config/routes";
 import * as USER_HELPERS from "./utils/userToken";
 
-export default function App() {
+//USESTATES
+import { useEffect, useState } from "react";
+
+function App() {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const accessToken = USER_HELPERS.getUserToken();
-    if (!accessToken) {
-      return setIsLoading(false);
-    }
-    getLoggedIn(accessToken).then((res) => {
-      if (!res.status) {
-        return setIsLoading(false);
-      }
-      setUser(res.data.user);
-      setIsLoading(false);
-    });
-  }, []);
-
+  
+  //FUNCTIONS
   function handleLogout() {
     const accessToken = USER_HELPERS.getUserToken();
     if (!accessToken) {
@@ -46,13 +40,33 @@ export default function App() {
     setUser(user);
   }
 
+  //USE EFFECTS
+  useEffect(() => {
+    const accessToken = USER_HELPERS.getUserToken();
+    if (!accessToken) {
+      return setIsLoading(false);
+    }
+    getLoggedIn(accessToken).then((res) => {
+      if (!res.status) {
+        return setIsLoading(false);
+      }
+      setUser(res.data.user);
+      setIsLoading(false);
+    });
+  }, []);
+
+
   if (isLoading) {
     return <LoadingComponent />;
   }
+
+
   return (
     <div className="App">
       <Navbar handleLogout={handleLogout} user={user} />
+      
       <Routes>
+      {/* REVIEW: Explicar como se esta destructurando esto */}
         {routes({ user, authenticate, handleLogout }).map((route) => (
           <Route key={route.path} path={route.path} element={route.element} />
         ))}
@@ -60,3 +74,5 @@ export default function App() {
     </div>
   );
 }
+
+export default App
