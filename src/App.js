@@ -66,7 +66,6 @@ function App() {
       <Navbar handleLogout={handleLogout} user={user} />
       
       <Routes>
-      {/* REVIEW: Explicar como se esta destructurando esto */}
         {routes({ user, authenticate, handleLogout }).map((route) => (
           <Route key={route.path} path={route.path} element={route.element} />
         ))}

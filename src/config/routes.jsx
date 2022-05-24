@@ -1,37 +1,53 @@
-//IMPORT REACT-ROUTER-DOM
+//Imports
+import * as PATHS from "../utils/paths";
 import { Navigate } from "react-router-dom";
 
-//HOME PAGES
-import HomePage from "../pages/HomePage";
+//Home pages
+import HomePage from "../pages/HomePages/HomePage";
+import Learn from "../pages/HomePages/Learn"
 
-//USER PAGES
-import Login from "../pages/LogIn";
-import Signup from "../pages/Signup";
-import UserPage from "../pages/UserPage";
+//Authentification pages
+import Signup from "../pages/AuthentificationPages/Signup";
+import Login from "../pages/AuthentificationPages/LogIn";
 
-//EVENT PAGES
-import EventsIndividual from "../pages/EventsIndividual";
-import Events from "../pages/Events";
+//Issue pages
+import Issues from "../pages/IssuesPages/Issues";
+import IssuesIndividual from "../pages/IssuesPages/IssuesIndividual";
 
-//ISSUE PAGES
-import Issues from "../pages/Issues";
-import IssuesIndividual from "../pages/IssuesIndividual";
+//Event pages
+import Events from "../pages/EventsPages/Events";
+import EventsIndividual from "../pages/EventsPages/EventsIndividual";
+import EventsCreate from "../pages/EventsPages/EventsCreate"
+import EventsPost from "../pages/EventsPages/EventsPost"
 
-//ERROR PAGES
-import ProtectedPage from "../pages/ProtectedPage";
+//Group pages
+import Groups from "../pages/GroupsPages/Groups"
+import GroupsIndividual from "../pages/GroupsPages/GroupsIndividual.jsx"
+import GroupsCreate from "../pages/GroupsPages/GroupsCreate"
+import GroupsPost from "../pages/GroupsPages/GroupsPost"
 
-//IMPORT PATHS
-import * as PATHS from "../utils/paths";
+//User pages
+import UserPage from "../pages/UserPages/UserPage";
+
+//Error pages
+import ProtectedPage from "../pages/AuthentificationPages/ProtectedPage";
 
 function routes (props){
   const { user } = props;
 
   return [
+    //Home Paths
     {
       path: PATHS.HOMEPAGE,
       element: <HomePage {...props} />,
     },
 
+    {
+      path: PATHS.LEARN,
+      element: <Learn {...props}/>
+    },
+
+    //Authentification Paths
     {
       path: PATHS.SIGNUPPAGE,
       element: <Signup {...props} />,
@@ -42,6 +58,7 @@ function routes (props){
       element: <Login {...props} />,
     },
 
+    //Issues Paths
     {
       path: PATHS.ISSUES,
       element: <Issues />,
@@ -52,6 +69,7 @@ function routes (props){
       element: <IssuesIndividual />,
     },
 
+    //Events Paths
     {
       path: PATHS.EVENTS,
       element: <Events />,
@@ -63,10 +81,43 @@ function routes (props){
     },
 
     {
+      path: PATHS.EVENTSCREATE,
+      element: <EventsCreate/>
+    },
+
+    {
+      path: PATHS.EVENTSPOST,
+      element: <EventsPost/>
+    },
+
+    //Groups Paths
+    {
+      path: PATHS.GROUPS,
+      element: <Groups />,
+    },
+
+    {
+      path: PATHS.GROUPSINDIVIDUAL,
+      element: <GroupsIndividual />,
+    },
+
+    {
+      path: PATHS.GROUPSCREATE,
+      element: <GroupsCreate/>
+    },
+
+    {
+      path: PATHS.GROUPSPOST,
+      element: <GroupsPost/>
+    },
+
+    //User Paths
+    {
       path: PATHS.USER,
       element: <UserPage />,
     },
-
+    
+    //Error Paths
     {
       path: PATHS.PROTECTEDPAGE,
       element: user ? (

@@ -30,11 +30,11 @@ function Navbar(props) {
   );
 }
 
-{
-  /* <button className="nav-logoutbtn" onClick={props.handleLogout}>
-          Logout
-        </button> */
-}
+// {
+//   /* <button className="nav-logoutbtn" onClick={props.handleLogout}>
+//           Logout
+//         </button> */
+// }
 
 //  {props.user ? (
 //           <>
