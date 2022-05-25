@@ -1,4 +1,4 @@
-//IMPORT REACT AND PATHS
+//Import React and Routes
 import React from "react";
 import { Link } from "react-router-dom";
 import * as PATHS from "../../utils/paths";
@@ -7,26 +7,229 @@ import * as CONSTS from "../../utils/consts";
 //IMPORT CSS
 import "./Navbar.css";
 
-//IMPORT COMPONENTS
-import IssueMenu from "../IssueMenu/IssueMenu";
+//Import Material Design Components
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import AdbIcon from "@mui/icons-material/Adb";
 
 function Navbar(props) {
+  //React UseState
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  //Handle Events
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
   return (
-    <nav>
-      <div>
-        <Link to={PATHS.HOMEPAGE} className="nav__projectName">
-          {CONSTS.CAPITALIZED_APP}
-        </Link>
-      </div>
+    <AppBar position="static">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
 
-      <div>
-        <Link to= {PATHS.ISSUES}>
-          Issues
-        </Link>
-      </div>
+          <Link to={PATHS.HOMEPAGE} className="authLink">
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              GrassRoots
+            </Typography>
+          </Link>
 
-      <IssueMenu />
-    </nav>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: "block", md: "none" },
+              }}
+            >
+              <Link to={PATHS.LEARN} className="authLink">
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Learn</Typography>
+                </MenuItem>
+              </Link>
+
+              <Link to={PATHS.ISSUES} className="authLink">
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Issues</Typography>
+                </MenuItem>
+              </Link>
+
+              <Link to={PATHS.EVENTS} className="authLink">
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Events</Typography>
+                </MenuItem>
+              </Link>
+
+              <Link to={PATHS.GROUPS} className="authLink">
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Groups</Typography>
+                </MenuItem>
+              </Link>
+            </Menu>
+          </Box>
+
+          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href=""
+            sx={{
+              mr: 2,
+              display: { xs: "flex", md: "none" },
+              flexGrow: 1,
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
+            GrassRoots
+          </Typography>
+
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Link to={PATHS.LEARN} className="authLink">
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                Learn
+              </Button>
+            </Link>
+
+            <Link to={PATHS.ISSUES} className="authLink">
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                Issues
+              </Button>
+            </Link>
+
+            <Link to={PATHS.EVENTS} className="authLink">
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                Events
+              </Button>
+            </Link>
+
+            <Link to={PATHS.GROUPS} className="authLink">
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                Groups
+              </Button>
+            </Link>
+          </Box>
+
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              <Link to={PATHS.USER} className="authLink">
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">My Profile</Typography>
+                </MenuItem>
+              </Link>
+
+              <Link to={PATHS.EVENTSCREATE} className="authLink">
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">Create Event</Typography>
+                </MenuItem>
+              </Link>
+
+              <Link to={PATHS.GROUPSCREATE} className="authLink">
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">Create Group</Typography>
+                </MenuItem>
+              </Link>
+
+              <MenuItem onClick={props.handleLogout} className="authLink">
+                <Typography textAlign="center">Log Out</Typography>
+              </MenuItem>
+            </Menu>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
 }
 

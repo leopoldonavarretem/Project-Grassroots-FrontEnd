@@ -62,60 +62,60 @@ function routes (props){
     //Issues Paths
     {
       path: PATHS.ISSUES,
-      element: <Issues />,
+      element: <Issues {...props}/>,
     },
 
     {
       path: PATHS.ISSUESINDIVIDUAL,
-      element: <IssuesIndividual />,
+      element: <IssuesIndividual {...props}/>,
     },
 
     //Events Paths
     {
       path: PATHS.EVENTS,
-      element: <Events />,
+      element: <Events {...props}/>,
     },
 
     {
       path: PATHS.EVENTSINDIVIDUAL,
-      element: <EventsIndividual />,
+      element: <EventsIndividual {...props}/>,
     },
 
     {
       path: PATHS.EVENTSCREATE,
-      element: <EventsCreate/>
+      element: <EventsCreate {...props}/>
     },
 
     {
       path: PATHS.EVENTSPOST,
-      element: <EventsPost/>
+      element: <EventsPost {...props}/>
     },
 
     //Groups Paths
     {
       path: PATHS.GROUPS,
-      element: <Groups />,
+      element: <Groups {...props}/>,
     },
 
     {
       path: PATHS.GROUPSINDIVIDUAL,
-      element: <GroupsIndividual />,
+      element: <GroupsIndividual {...props}/>,
     },
 
     {
       path: PATHS.GROUPSCREATE,
-      element: <GroupsCreate/>
+      element: <GroupsCreate {...props}/>
     },
 
     {
       path: PATHS.GROUPSPOST,
-      element: <GroupsPost/>
+      element: <GroupsPost {...props}/>
     },
 
     //User Paths
     {
       path: PATHS.USER,
-      element: <UserPage />,
+      element: <UserPage {...props}/>,
     },
     
     //Error Paths

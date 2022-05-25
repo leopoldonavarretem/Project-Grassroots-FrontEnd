@@ -19,6 +19,7 @@ function App() {
   
   //FUNCTIONS
   function handleLogout() {
+    console.log("success")
     const accessToken = USER_HELPERS.getUserToken();
     if (!accessToken) {
       setUser(null);
