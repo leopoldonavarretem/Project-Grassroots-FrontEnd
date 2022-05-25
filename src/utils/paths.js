@@ -27,3 +27,4 @@ export const USER = "/user/:id";
 
 //Error Paths
 export const PROTECTEDPAGE = "/protected";
+export const NOTFOUND = "/*";

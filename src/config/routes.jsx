@@ -30,7 +30,8 @@ import GroupsPost from "../pages/GroupsPages/GroupsPost"
 import UserPage from "../pages/UserPages/UserPage";
 
 //Error pages
-import ProtectedPage from "../pages/AuthentificationPages/ProtectedPage";
+import ProtectedPage from "../pages/ErrorPages/ProtectedPage";
+import NotFound from "../pages/ErrorPages/NotFound";
 
 function routes (props){
   const { user } = props;
@@ -126,6 +127,11 @@ function routes (props){
         <Navigate to={PATHS.LOGINPAGE} replace />
       ),
     },
+
+    {
+      path: PATHS.NOTFOUND,
+      element: <NotFound/>
+    }
   ];
 };
 
