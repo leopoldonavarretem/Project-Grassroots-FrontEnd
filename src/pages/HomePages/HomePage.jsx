@@ -1,11 +1,11 @@
-function HomePage() {
-  return (
-    <div className="App">
-      <header className="App-header">
-      THERE IS NO HOME PAGE OMG
-      </header>
-    </div>
-  );
+//Import Components
+import WelcomeImage from "../../components/HomePage/WelcomeImage/WelcomeImage"
+
+function HomePage(props){
+  return(
+
+  <WelcomeImage/>
+  )
 }
 
 export default HomePage;

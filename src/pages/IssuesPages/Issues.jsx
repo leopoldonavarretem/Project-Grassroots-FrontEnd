@@ -1,5 +1,34 @@
+//Imports
+import { useState, useEffect } from "react";
+import axios from "axios";
+
+//Component imports
+import Container from "@mui/material/Container";
+import IssuesCard from "../../components/IssuesPage/IssuesCard/IssuesCard";
+
 function Issues(props) {
-  return <>ISSUES PAGE</>;
+  const [issues, setIssues] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:5005/api/issues").then((issues) => {
+      setIssues(issues.data);
+    });
+  }, []);
+
+  function showAllCards() {
+    return issues.map((issue) => {
+      return <IssuesCard data={issue} />;
+    });
+  }
+
+  return (
+    <Container>
+      <h3>Explore Issues</h3>
+      {issues.map((issue) => {
+        return <IssuesCard data={issue} />;
+      })}
+    </Container>
+  );
 }
 
 export default Issues;
