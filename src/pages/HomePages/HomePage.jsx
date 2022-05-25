@@ -1,11 +1,7 @@
 //Import Components
-import WelcomeImage from "../../components/HomePage/WelcomeImage/WelcomeImage"
 
-function HomePage(props){
-  return(
-
-  <WelcomeImage/>
-  )
+function HomePage(props) {
+  return <></>;
 }
 
 export default HomePage;

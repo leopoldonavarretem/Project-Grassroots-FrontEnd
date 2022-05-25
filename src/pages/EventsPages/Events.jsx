@@ -7,17 +7,17 @@ import Container from "@mui/material/Container";
 import EventsCard from "../../components/EventsPage/EventsCard";
 
 function Events(props) {
-  const [groups, setGroups] = useState([]);
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5005/api/events").then((groups) => {
-      setGroups(groups.data);
+    axios.get("http://localhost:5005/api/events").then((events) => {
+      setEvents(events.data);
     });
   }, []);
 
   function showAllEvents() {
-    return groups.map((group) => {
-      return <EventsCard data={group} />;
+    return events.map((event) => {
+      return <EventsCard data={event} />;
     });
   }
 
