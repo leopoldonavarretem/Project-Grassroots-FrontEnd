@@ -4,7 +4,7 @@ import axios from "axios";
 
 //Component imports
 import Container from "@mui/material/Container";
-import IssuesCard from "../../components/IssuesPage/IssuesCard/IssuesCard";
+import IssuesCard from "../../components/IssuesPage/IssuesCard";
 
 function Issues(props) {
   const [issues, setIssues] = useState([]);
@@ -15,6 +15,7 @@ function Issues(props) {
     });
   }, []);
 
+
   function showAllCards() {
     return issues.map((issue) => {
       return <IssuesCard data={issue} />;
@@ -24,9 +25,7 @@ function Issues(props) {
   return (
     <Container>
       <h3>Explore Issues</h3>
-      {issues.map((issue) => {
-        return <IssuesCard data={issue} />;
-      })}
+      {showAllCards()}
     </Container>
   );
 }
