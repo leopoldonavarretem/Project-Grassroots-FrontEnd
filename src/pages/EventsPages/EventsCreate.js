@@ -53,7 +53,7 @@ function EventsCreate(props) {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:5005/api/issues").then((issues) => {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/issues`).then((issues) => {
       issues.data.map((issue) => {
         issuesList.push({ label: `${issue.issueName}`, value: `${issue._id}` });
       });
@@ -62,7 +62,7 @@ function EventsCreate(props) {
 
   //TODO: Add recirect
   const submitForm = () => {
-    axios.post("http://localhost:5005/api/events/create", newEvent).then();
+    axios.post(`${process.env.REACT_APP_SERVER_URL}/events/create`, newEvent).then();
   };
 
   return (

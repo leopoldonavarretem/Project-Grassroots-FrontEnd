@@ -10,7 +10,7 @@ function Issues(props) {
   const [issues, setIssues] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5005/api/issues").then((issues) => {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/issues`).then((issues) => {
       setIssues(issues.data);
     });
   }, []);

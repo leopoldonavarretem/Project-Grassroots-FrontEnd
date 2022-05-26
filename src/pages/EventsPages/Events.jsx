@@ -10,7 +10,7 @@ function Events(props) {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5005/api/events").then((events) => {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/events`).then((events) => {
       setEvents(events.data);
     });
   }, []);

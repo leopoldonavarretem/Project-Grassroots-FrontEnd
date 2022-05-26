@@ -12,7 +12,7 @@ function HomePage(props) {
   const [groups, setGroups] = useState();
 
   useEffect(() => {
-    axios.get("http://localhost:5005/api/home").then((groups) => {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/home`).then((groups) => {
       setGroups(groups);
     });
   }, []);

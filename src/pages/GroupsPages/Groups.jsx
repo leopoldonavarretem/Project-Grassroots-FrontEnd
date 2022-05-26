@@ -10,7 +10,7 @@ function Groups(props) {
   const [groups, setGroups] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5005/api/groups").then((groups) => {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/groups`).then((groups) => {
       setGroups(groups.data);
     });
   }, []);

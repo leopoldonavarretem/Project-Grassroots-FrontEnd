@@ -53,7 +53,7 @@ function GroupsCreate(props) {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:5005/api/issues").then((issues) => {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/issues`).then((issues) => {
       issues.data.map((issue) => {
         issuesList.push({ label: `${issue.issueName}`, value: `${issue._id}` });
       });
@@ -62,7 +62,7 @@ function GroupsCreate(props) {
 
   //TODO: Add recirect
   const submitForm = () => {
-    axios.post("http://localhost:5005/api/groups/create", newGroup).then();
+    axios.post(`${process.env.REACT_APP_SERVER_URL}/groups/create`, newGroup).then();
   };
 
   return (
