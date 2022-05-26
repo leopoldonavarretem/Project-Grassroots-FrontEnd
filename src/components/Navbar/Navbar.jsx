@@ -1,5 +1,5 @@
 //Import React and Routes
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as PATHS from "../../utils/paths";
 import * as CONSTS from "../../utils/consts";
@@ -23,6 +23,21 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 
 function Navbar(props) {
+  const [image, setImage] = React.useState(
+    ""
+  );
+
+  useEffect(()=>{
+    if(!props.user){
+      setImage("")
+    }else{
+      setImage(props.user.profilePic)
+    }
+  },[props])
+
+  // if(props.user.profilePic){
+  //   setImage(props.user.profilePic)
+  // }
   //React UseState
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -148,7 +163,7 @@ function Navbar(props) {
             <Link to={PATHS.LEARN} className="authLink">
               <Button
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{ my: 4, color: "white", display: "block" }}
               >
                 Learn
               </Button>
@@ -182,51 +197,64 @@ function Navbar(props) {
             </Link>
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              <Link to={PATHS.USER} className="authLink">
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">My Profile</Typography>
-                </MenuItem>
-              </Link>
+          {props.user && (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 1 }}>
+                  <Avatar alt="Remy Sharp" src={image} />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <Link to={PATHS.USER} className="authLink">
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">My Profile</Typography>
+                  </MenuItem>
+                </Link>
 
-              <Link to={PATHS.EVENTSCREATE} className="authLink">
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">Create Event</Typography>
-                </MenuItem>
-              </Link>
+                <Link to={PATHS.EVENTSCREATE} className="authLink">
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">Create Event</Typography>
+                  </MenuItem>
+                </Link>
 
-              <Link to={PATHS.GROUPSCREATE} className="authLink">
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">Create Group</Typography>
-                </MenuItem>
-              </Link>
+                <Link to={PATHS.GROUPSCREATE} className="authLink">
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">Create Group</Typography>
+                  </MenuItem>
+                </Link>
 
-              <MenuItem onClick={props.handleLogout} className="authLink">
-                <Typography textAlign="center">Log Out</Typography>
-              </MenuItem>
-            </Menu>
-          </Box>
+                <MenuItem onClick={props.handleLogout} className="authLink">
+                  <Typography textAlign="center">Log Out</Typography>
+                </MenuItem>
+              </Menu>
+            </Box>
+          )}
+
+          {!props.user && (
+            <Box>
+              <Link to={PATHS.LOGINPAGE}>
+                <Button variant="contained">Log In</Button>
+              </Link>
+              <Link to={PATHS.SIGNUPPAGE}>
+                <Button variant="contained">Create Account</Button>
+              </Link>
+            </Box>
+          )}
         </Toolbar>
       </Container>
     </AppBar>

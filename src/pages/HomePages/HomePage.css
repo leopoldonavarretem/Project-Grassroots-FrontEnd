@@ -1,0 +1,28 @@
+.h {
+  width: 95%;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.centered {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 100px;
+  color: black;
+  margin-bottom: 0px;
+}
+.centered h1 {
+  margin-bottom: 0px;
+  padding: 0px;
+}
+
+.centered h4 {
+  font-size: 20px;
+  margin-top: 0px;
+}

@@ -17,7 +17,7 @@ function Groups(props) {
 
   function showAllGroups() {
     return groups.map((group) => {
-      return <GroupsCard data={group} />;
+      return <GroupsCard data={group} key={group._id}/>;
     });
   }
 
