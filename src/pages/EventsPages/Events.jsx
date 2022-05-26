@@ -17,7 +17,7 @@ function Events(props) {
 
   function showAllEvents() {
     return events.map((event) => {
-      return <EventsCard data={event} />;
+      return <EventsCard data={event} key={event._id}/>;
     });
   }
 

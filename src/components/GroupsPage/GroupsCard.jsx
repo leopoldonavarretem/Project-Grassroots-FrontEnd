@@ -9,7 +9,6 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 function GroupsCard(props) {
-    console.log(props.data)
     const { groupDescription, groupName, groupImage, _id } = props.data;
     return (
       <Card sx={{ maxWidth: 345 }}>

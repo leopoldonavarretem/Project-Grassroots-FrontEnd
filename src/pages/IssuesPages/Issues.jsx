@@ -18,7 +18,7 @@ function Issues(props) {
 
   function showAllCards() {
     return issues.map((issue) => {
-      return <IssuesCard data={issue} />;
+      return <IssuesCard data={issue} key={issue._id}/>;
     });
   }
 

@@ -12,7 +12,6 @@ function Groups(props) {
   useEffect(() => {
     axios.get("http://localhost:5005/api/groups").then((groups) => {
       setGroups(groups.data);
-      console.log(groups.data)
     });
   }, []);
 
