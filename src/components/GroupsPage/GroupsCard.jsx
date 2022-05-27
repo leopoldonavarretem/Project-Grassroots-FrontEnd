@@ -11,10 +11,9 @@ import Typography from "@mui/material/Typography";
 
 function GroupsCard(props) {
   const { groupDescription, groupName, groupImage, _id } = props.data;
-
+  
   const addedGroup = {
     group: `${_id}`,
-    user: `${props.user._id}`,
   };
 
   function hello() {

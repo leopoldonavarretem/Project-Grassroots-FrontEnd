@@ -12,6 +12,8 @@ import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import LoginIcon from "@mui/icons-material/Login";
 import CardContent from "@mui/material/CardContent";
+import { Redirect, useNavigate } from "react-router-dom";
+
 
 //Styles
 const Hide = styled("input")({
@@ -37,6 +39,7 @@ function GroupsCreate(props) {
   };
   const handleGroupCityInput = (e) => setCity(e.target.value);
   const handleGroupStateInput = (e) => setState(e.target.value);
+  const navigate = useNavigate();
 
   const issuesList = [];
 
@@ -63,7 +66,7 @@ function GroupsCreate(props) {
   const submitForm = () => {
     axios
       .post(`${process.env.REACT_APP_SERVER_URL}/groups/create`, newGroup)
-      .then();
+      .then(()=>navigate('/groups'));
   };
 
   return (
