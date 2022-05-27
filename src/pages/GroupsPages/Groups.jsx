@@ -5,6 +5,7 @@ import axios from "axios";
 //Component imports
 import Container from "@mui/material/Container";
 import GroupsCard from "../../components/GroupsPage/GroupsCard";
+import Grid from "@mui/material/Grid"
 
 function Groups(props) {
   const [groups, setGroups] = useState([]);
@@ -17,14 +18,20 @@ function Groups(props) {
 
   function showAllGroups() {
     return groups.map((group) => {
-      return <GroupsCard data={group} key={group._id}/>;
-    });
+      return (
+        <Grid item xs={4}>
+      <GroupsCard data={group} key={group._id} user={props.user}/>
+        </Grid>
+    )});
   }
 
   return (
     <Container>
       <h3>Explore Popular Groups</h3>
+      <Grid container spacing={2}>
       {showAllGroups()}
+
+      </Grid>
     </Container>
   );
 }

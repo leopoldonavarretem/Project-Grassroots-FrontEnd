@@ -7,12 +7,11 @@ import redirect from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
 import Button from "@mui/material/Button";
-import Input from "@mui/material/Input";
-import IconButton from "@mui/material/IconButton";
-import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import Card from "@mui/material/Card";
+import LoginIcon from "@mui/icons-material/Login";
+import CardContent from "@mui/material/CardContent";
 
 //Styles
 const Hide = styled("input")({
@@ -62,54 +61,58 @@ function GroupsCreate(props) {
 
   //TODO: Add recirect
   const submitForm = () => {
-    axios.post(`${process.env.REACT_APP_SERVER_URL}/groups/create`, newGroup).then();
+    axios
+      .post(`${process.env.REACT_APP_SERVER_URL}/groups/create`, newGroup)
+      .then();
   };
 
   return (
-    <Container>
-      <h2>Create a New Group!</h2>
+    <Container sx={{ m: 1 }}>
+      <Card sx={{ width: "40%", ml: 60, mt: 10 }}>
+        <CardContent sx={{ textAlign: "center" }}>
+          <h2>Create a new group</h2>
+          <TextField
+            id="outlined-basic"
+            label="Group Name"
+            value={groupName}
+            onChange={handleGroupNameInput}
+            variant="outlined"
+            sx={{ width: 300 }}
+          />
 
-      <TextField
-        id="outlined-basic"
-        label="Group Name"
-        value={groupName}
-        onChange={handleGroupNameInput}
-        variant="outlined"
-        sx={{ width: 300 }}
-      />
+          <br />
 
-      <br />
+          <TextField
+            id="outlined-basic"
+            label="Group Description"
+            variant="outlined"
+            value={groupDescription}
+            onChange={handleGroupDescriptionInput}
+            sx={{ m: 1, width: 300 }}
+          />
 
-      <TextField
-        id="outlined-basic"
-        label="Group Description"
-        variant="outlined"
-        value={groupDescription}
-        onChange={handleGroupDescriptionInput}
-      />
+          <br />
 
-      <br />
+          <TextField
+            id="outlined-basic"
+            label="City"
+            variant="outlined"
+            sx={{ width: 150 }}
+            value={city}
+            onChange={handleGroupCityInput}
+          />
 
-      <TextField
-        id="outlined-basic"
-        label="City"
-        variant="outlined"
-        sx={{ width: 130 }}
-        value={city}
-        onChange={handleGroupCityInput}
-      />
+          <TextField
+            id="outlined-basic"
+            label="State"
+            variant="outlined"
+            sx={{ width: 100 }}
+            value={state}
+            onChange={handleGroupStateInput}
+          />
+          <br />
 
-      <TextField
-        id="outlined-basic"
-        label="State"
-        variant="outlined"
-        sx={{ width: 130 }}
-        value={state}
-        onChange={handleGroupStateInput}
-      />
-      <br />
-
-      {/* <Autocomplete
+          {/* <Autocomplete
         disablePortal
         id="combo-box-demo"
         options={issuesList}
@@ -119,23 +122,29 @@ function GroupsCreate(props) {
         renderInput={(params) => <TextField {...params} />}
       /> */}
 
-      <label htmlFor="contained-button-file">
-        <Hide
-          accept="image/*"
-          id="contained-button-file"
-          multiple
-          type="file"
-        />
-        <Button variant="contained" component="span">
-          Upload a banner!
-        </Button>
-      </label>
+          <label htmlFor="contained-button-file">
+            <Hide
+              accept="image/*"
+              id="contained-button-file"
+              multiple
+              type="file"
+            />
+            <Button variant="contained" component="span" sx={{ m: 1 }}>
+              Upload a banner!
+            </Button>
+          </label>
 
-      <br />
+          <br />
 
-      <Button sx={{ width: 300 }} variant="contained" onClick={submitForm}>
-        Create Group!
-      </Button>
+          <Button
+            sx={{ width: 300, m: 1 }}
+            variant="contained"
+            onClick={submitForm}
+          >
+            Create Group!
+          </Button>
+        </CardContent>
+      </Card>
     </Container>
   );
 }

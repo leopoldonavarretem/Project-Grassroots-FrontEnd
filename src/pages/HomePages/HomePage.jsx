@@ -7,6 +7,13 @@ import banner from "./banner-womens-march.jpg";
 //Import Components
 import GroupsCard from "../../components/GroupsPage/GroupsCard";
 import Container from "@mui/material/Container";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 function HomePage(props) {
   const [groups, setGroups] = useState();
@@ -23,21 +30,54 @@ function HomePage(props) {
     });
   }
 
+  const styles = {
+    media: {
+      height: 0,
+      paddingTop: "56.25%", // 16:9
+    },
+    overlay: {
+      position: "relative",
+      top: "20px",
+      left: "20px",
+      color: "black",
+      backgroundColor: "white",
+    },
+  };
+
   return (
-    <div className="body">
-      <div className="container">
-        <img src={banner} alt="" className="h" />
-        <div className="centered">
-        <h1 >GrassRoots</h1>
-        <h4>A platform to Organize around Social Change</h4>
-        </div>
+    <Container maxWidth="xl">
+      <Card sx={{ width: `auto` }}>
+        <Box sx={{ position: "relative" }}>
+          <CardMedia
+            component="img"
+            height="500"
+            image={banner}
+            alt="green iguana"
+            styles={styles.media}
+          />
 
-      </div>
-      <div>
-      <h3>What is GrassRoots?</h3>
-
-      </div>
-    </div>
+          <Box
+            sx={{
+              position: "absolute",
+              bottom: 200,
+              left: 450,
+              right: "50%",
+              width: 500,
+              bgcolor: "rgba(0, 0, 0, 0.54)",
+              color: "rgb(220,255,0)",
+              padding: "10px",
+              borderRadius: 25,
+            }}
+          >
+            <Typography variant="h1">GrassRoots</Typography>
+          </Box>
+        </Box>
+      </Card>
+      
+      <Card sx={{ width: `auto` }}>
+        
+      </Card>
+    </Container>
   );
 }
 

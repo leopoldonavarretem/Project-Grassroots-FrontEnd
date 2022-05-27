@@ -1,10 +1,12 @@
 //ROUTES
 import { Routes, Route } from "react-router-dom";
 import routes from "./config/routes";
+import { Redirect } from "react-router-dom";
 
 //COMPONENTS
 import LoadingComponent from "./components/Loading";
 import Navbar from "./components/Navbar/Navbar";
+import Container from "@mui/material/Container"
 
 //LOG IN 
 import { getLoggedIn, logout } from "./services/auth";
@@ -19,21 +21,26 @@ function App() {
   
   //FUNCTIONS
   function handleLogout() {
-    console.log("success")
     const accessToken = USER_HELPERS.getUserToken();
     if (!accessToken) {
       setUser(null);
       return setIsLoading(false);
     }
+
     setIsLoading(true);
+
     logout(accessToken).then((res) => {
       if (!res.status) {
         // deal with error here
         console.error("Logout was unsuccessful: ", res);
       }
       USER_HELPERS.removeUserToken();
+
       setIsLoading(false);
-      return setUser(null);
+
+    
+      return (setUser(null));
+      
     });
   }
 
@@ -68,9 +75,10 @@ function App() {
       
       <Routes>
         {routes({ user, authenticate, handleLogout }).map((route) => (
-          <Route key={route.path} path={route.path} element={route.element} />
+          <Route key={route.path} path={route.path} element={route.element} user={user} />
         ))}
       </Routes>
+
     </div>
   );
 }

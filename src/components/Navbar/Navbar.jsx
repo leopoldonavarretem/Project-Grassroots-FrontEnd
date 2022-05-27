@@ -20,20 +20,18 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+import AssuredWorkloadIcon from "@mui/icons-material/AssuredWorkload";
 
 function Navbar(props) {
-  const [image, setImage] = React.useState(
-    ""
-  );
+  const [image, setImage] = React.useState("");
 
-  useEffect(()=>{
-    if(!props.user){
-      setImage("")
-    }else{
-      setImage(props.user.profilePic)
+  useEffect(() => {
+    if (!props.user) {
+      setImage("");
+    } else {
+      setImage(props.user.profilePic);
     }
-  },[props])
+  }, [props]);
 
   // if(props.user.profilePic){
   //   setImage(props.user.profilePic)
@@ -62,7 +60,7 @@ function Navbar(props) {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <AssuredWorkloadIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
 
           <Link to={PATHS.HOMEPAGE} className="authLink">
             <Typography
@@ -112,11 +110,11 @@ function Navbar(props) {
                 display: { xs: "block", md: "none" },
               }}
             >
-              <Link to={PATHS.LEARN} className="authLink">
+              {/* <Link to={PATHS.LEARN} className="authLink">
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">Learn</Typography>
                 </MenuItem>
-              </Link>
+              </Link> */}
 
               <Link to={PATHS.ISSUES} className="authLink">
                 <MenuItem onClick={handleCloseNavMenu}>
@@ -138,7 +136,7 @@ function Navbar(props) {
             </Menu>
           </Box>
 
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <AssuredWorkloadIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
 
           <Typography
             variant="h5"
@@ -160,19 +158,19 @@ function Navbar(props) {
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Link to={PATHS.LEARN} className="authLink">
+            {/* <Link to={PATHS.LEARN} className="authLink">
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 4, color: "white", display: "block" }}
               >
                 Learn
               </Button>
-            </Link>
+            </Link> */}
 
-            <Link to={PATHS.ISSUES} className="authLink">
+            {/* <Link to={PATHS.ISSUES} className="authLink">
               <Button
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{ my: 4, color: "white", display: "block" }}
               >
                 Issues
               </Button>
@@ -185,7 +183,7 @@ function Navbar(props) {
               >
                 Events
               </Button>
-            </Link>
+            </Link> */}
 
             <Link to={PATHS.GROUPS} className="authLink">
               <Button
@@ -220,17 +218,17 @@ function Navbar(props) {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                <Link to={PATHS.USER} className="authLink">
+                <Link to={`/user/${props.user._id}`} className="authLink">
                   <MenuItem onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">My Profile</Typography>
                   </MenuItem>
                 </Link>
 
-                <Link to={PATHS.EVENTSCREATE} className="authLink">
+                {/* <Link to={PATHS.EVENTSCREATE} className="authLink">
                   <MenuItem onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">Create Event</Typography>
                   </MenuItem>
-                </Link>
+                </Link> */}
 
                 <Link to={PATHS.GROUPSCREATE} className="authLink">
                   <MenuItem onClick={handleCloseUserMenu}>
